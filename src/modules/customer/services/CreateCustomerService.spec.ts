@@ -42,7 +42,7 @@ describe('CreateCustomer', () => {
         name: 'customer-name',
         age: 24,
         marital_status: 'single',
-        cpf: '99999999999',
+        cpf: customer.cpf,
         city: 'city',
         state: 'state'
       }),
