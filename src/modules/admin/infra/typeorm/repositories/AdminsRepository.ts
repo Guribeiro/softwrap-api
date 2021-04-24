@@ -28,6 +28,16 @@ class AdminsRepository implements IAdminsRepository{
 
     return admin;
   }
+
+  public async findById(id: string):Promise<Admin | undefined>{
+    const admin = await this.ormRepository.findOne({where: {id}});
+
+    return admin;
+  }
+
+  public async save(admin:Admin):Promise<Admin>{
+    return this.ormRepository.save(admin);
+  }
 }
 
 export default AdminsRepository;

@@ -19,6 +19,11 @@ class AdminsRepository implements IAdminsRepository{
     return findAdmin;
   }
 
+  public async findById(id: string):Promise<Admin| undefined>{
+    const admin = this.admins.find(a => a.id === id);
+    return admin
+  }
+
   public async create({name, email, password}:ICreateAdminDTO):Promise<Admin>{
     const admin = new Admin();
 
@@ -30,6 +35,14 @@ class AdminsRepository implements IAdminsRepository{
     })
 
     this.admins.push(admin);
+
+    return admin;
+  }
+
+  public async save(admin:Admin):Promise<Admin>{
+    const findIndex = this.admins.findIndex(findAdmin => findAdmin.id === admin.id);
+
+    this.admins[findIndex] = admin;
 
     return admin;
   }
