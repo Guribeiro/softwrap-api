@@ -10,15 +10,18 @@
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Guribeiro/softwrap-api?color=00B7F8">
 
-
   <a href="https://www.linkedin.com/in/gustavohribeiro/" target="_blank" rel="noopener noreferrer">
     <img alt="Made by" src="https://img.shields.io/badge/made%20by-Gustavo%20Henrique-00B7F8">
   </a>
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/Guribeiro/softwrap-api?color=00B7F8">
 
-  <a href="https://github.com/Guribeiro/softwrap-api/commits/master">
+  <a href="https://github.com/Guribeiro/softwrap-api/commits">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Guribeiro/softwrap-api?color=00B7F8">
+  </a>
+
+  <a href="https://github.com/Guribeiro/softwrap-api/stargazers">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/stars/Guribeiro/softwrap-api?color=00B7F8">
   </a>
 
   <a href="https://github.com/Guribeiro/softwrap-api/issues">
