@@ -1,16 +1,20 @@
 import FakeAdminsRepository from '../infra/repositories/fakes/FakeAdminsRepository';
 import SessionUserService from './SessionUserService';
 import AppError from '@shared/errors/AppError';
+import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 
 let fakeAdminsRepository: FakeAdminsRepository;
 let sessionUserService: SessionUserService;
+let hashProvider: FakeHashProvider;
 
 describe('SessionUser', () =>{
   beforeEach(() =>{
     fakeAdminsRepository= new FakeAdminsRepository();
+    hashProvider = new FakeHashProvider();
 
     sessionUserService = new SessionUserService(
-      fakeAdminsRepository
+      fakeAdminsRepository,
+      hashProvider
     );
   })
 
