@@ -1,6 +1,7 @@
 import SessionUserService from '@modules/admin/services/SessionUserService';
 import {Request, Response} from 'express';
 import { container } from 'tsyringe';
+import {classToClass} from 'class-transformer';
 
 export default class SessionsController {
   public async create(request:Request, response:Response):Promise<Response>{
@@ -14,7 +15,7 @@ export default class SessionsController {
         password
       })
 
-      return response.json({admin, token})
+      return response.json({user:classToClass(admin), token})
     } catch (error) {
       return response.json({ error: error.message })
     }
