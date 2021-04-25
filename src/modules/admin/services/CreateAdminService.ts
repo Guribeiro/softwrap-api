@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import Admin from '@modules/admin/infra/typeorm/entities/Admin';
 import IAdminsRepository from '@modules/admin/infra/repositories/IAdminsRepository';
 import AppError from '@shared/errors/AppError';
-import { hash } from 'bcryptjs';
+import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 interface Request {
   name: string;
@@ -14,7 +14,10 @@ interface Request {
 class CreateAdminService {
   constructor(
     @inject('AdminsRepository')
-    private adminsRepository: IAdminsRepository
+    private adminsRepository: IAdminsRepository,
+
+    @inject('HashProvider')
+    private hashProvider: IHashProvider,
   ) { }
 
   public async execute({ name, email, password }: Request): Promise<Admin> {
@@ -24,7 +27,7 @@ class CreateAdminService {
       throw new AppError('Email is already been used by another admin');
     }
 
-    const hashedPassword = await hash(password, 8);
+    const hashedPassword = await this.hashProvider.generateHash(password)
 
     const admin = await this.adminsRepository.create({
       name,

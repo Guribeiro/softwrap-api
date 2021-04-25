@@ -1,16 +1,20 @@
 import FakeAdminsRepository from '../infra/repositories/fakes/FakeAdminsRepository';
 import CreateAdminService from './CreateAdminService';
 import AppError from '@shared/errors/AppError';
+import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 
 let fakeAdminsRepository: FakeAdminsRepository;
 let createAdminService: CreateAdminService;
+let hashProvider: FakeHashProvider;
 
 describe('CreateAdmin', () =>{
     beforeEach(() =>{
       fakeAdminsRepository= new FakeAdminsRepository();
+      hashProvider = new FakeHashProvider();
 
       createAdminService = new CreateAdminService(
-        fakeAdminsRepository
+        fakeAdminsRepository,
+        hashProvider
       );
     })
 
