@@ -38,6 +38,16 @@ export class CreateCustomers1619149063967 implements MigrationInterface {
             name: 'state',
             type: 'varchar',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ]
       })
     )
