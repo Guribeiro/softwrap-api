@@ -12,9 +12,7 @@ class ListCustomersService {
   ) { }
 
   public async execute(): Promise<Customer[]> {
-
     const customers = await this.customersRepository.index();
-
     return customers;
 
   }
