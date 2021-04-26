@@ -1,7 +1,8 @@
 import CreateCustomerService from '@modules/customer/services/CreateCustomerService';
 import ListCustomersService from '@modules/customer/services/ListCustomersService';
-import ShowCustomerService from '@modules/customer/services/ShowCustomerService';
+import ShowCustomerService from '@modules/customer/services/ShowCustomersService';
 import UpdateCustomerService from '@modules/customer/services/UpdateCustomerService';
+import DeleteCustomerService from '@modules/customer/services/DeleteCustomerService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -23,15 +24,20 @@ export default class CustomersController {
 
       return response.json(customer)
     } catch (error) {
-      return response.json({ error: error.message })
+      return response.status(400).json({ error: error.message })
     }
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
     try {
+      const {take = 8, page = 1} = request.query;
+
       const listCustomersService = container.resolve(ListCustomersService);
 
-      const customers = await listCustomersService.execute();
+      const customers = await listCustomersService.execute({
+        take: Number(take),
+        page: Number(page)
+      });
 
       return response.status(200).json(customers);
     } catch (error) {
@@ -81,4 +87,25 @@ export default class CustomersController {
       return response.status(400).json({ error: error.message });
     }
   }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    try {
+      const { id } = request.user;
+
+      const {customer_id} = request.params;
+
+
+      const deleteCustomerService = container.resolve(DeleteCustomerService);
+
+      const customer = await deleteCustomerService.execute({
+        admin_id: id,
+        customer_id,
+      });
+
+      return response.json(customer);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
+  }
+
 }

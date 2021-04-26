@@ -3,6 +3,7 @@ import Customer from '@modules/customer/infra/typeorm/entities/Customer';
 
 import ICustomersRepository from '@modules/customer/infra/repositories/ICustomersRepository';
 import ICreateCustomerDTO from '@modules/customer/dtos/ICreateCustomerDTO';
+import IListCustomersDTO from '@modules/customer/dtos/IListCustomersDTO';
 
 class CustomersRepository implements ICustomersRepository{
   private ormRepository: Repository<Customer>
@@ -24,8 +25,8 @@ class CustomersRepository implements ICustomersRepository{
     return customer;
   }
 
-  public async index():Promise<Customer[]>{
-    const customers = await this.ormRepository.find();
+  public async index({take, page}:IListCustomersDTO ):Promise<Customer[]>{
+    const customers = await this.ormRepository.find({take, skip: take * (page - 1)});
 
     return customers;
   }

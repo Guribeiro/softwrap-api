@@ -4,6 +4,11 @@ import AppError from '@shared/errors/AppError';
 import ICustomersRepository from '../infra/repositories/ICustomersRepository';
 
 
+interface Request{
+  take: number;
+  page: number;
+}
+
 @injectable()
 class ListCustomersService {
   constructor(
@@ -11,8 +16,11 @@ class ListCustomersService {
     private customersRepository: ICustomersRepository
   ) { }
 
-  public async execute(): Promise<Customer[]> {
-    const customers = await this.customersRepository.index();
+  public async execute({take, page}:Request): Promise<Customer[]> {
+    const customers = await this.customersRepository.index({
+      take,
+      page
+    });
     return customers;
 
   }
