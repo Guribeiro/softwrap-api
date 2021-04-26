@@ -1,5 +1,5 @@
 import FakeCustomersRepository from '../infra/repositories/fakes/FakeCustomersRepository';
-import ShowCustomerService from './ShowCustomerService';
+import ShowCustomerService from './ShowCustomersService';
 import AppError from '@shared/errors/AppError';
 
 let fakeCustomersRepository: FakeCustomersRepository;
