@@ -34,7 +34,10 @@ describe('CreateCustomer', () => {
       state: 'state'
     });
 
-    const customers = await listCustomersService.execute();
+    const customers = await listCustomersService.execute({
+      page: 1,
+      take: 2
+    });
 
     expect(customers).toEqual([first_customer, second_customer]);
 
