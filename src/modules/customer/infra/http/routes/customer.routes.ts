@@ -34,8 +34,15 @@ customerRouter.get('/:id',
 customerRouter.put('/:customer_id',
   celebrate({
     [Segments.PARAMS]: {
-      customer_id:Joi.string().uuid().required()
+      customer_id: Joi.string().uuid().required()
     }
   }), ensureAuthenticated, customersController.update);
+
+customerRouter.delete('/:customer_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      customer_id: Joi.string().uuid().required()
+    }
+  }), customersController.delete);
 
 export default customerRouter;
