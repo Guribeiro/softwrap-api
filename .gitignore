@@ -2,8 +2,6 @@
 
 .vscode
 
-ormconfig.json
-
 coverage
 
 .env
