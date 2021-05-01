@@ -73,7 +73,7 @@ Technologies that I used to develop this api
 
 ## 💻 Getting started
 
-Import the `Insomnia.json` on Insomnia App or click on [Run in Insomnia](#insomniaButton) button
+Import the `Insomnia-workspace.json` on Insomnia App or click on [Run in Insomnia](#insomniaButton) button
 
 ### Requirements
 
